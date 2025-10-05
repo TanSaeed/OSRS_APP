@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "concurrently \"pnpm --filter backend dev\" \"pnpm --filter frontend dev\"",
     "predev": "pnpm --filter @osrs-app/shared run build",
-    "build": "pnpm --recursive run build"
+    "build": "pnpm --recursive run build",
+    "preview": " pnpm --filter frontend preview --open"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
