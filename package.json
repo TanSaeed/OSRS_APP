@@ -1,0 +1,17 @@
+{
+  "name": "OSRS App",
+  "private": true,
+  "version": "1.0.0",
+  "description": "This Old School Runescape App is designed to show full-stack development and CI/CD pipeline. ",
+  "scripts": {
+    "dev": "concurrently \"pnpm --filter backend dev\" \"pnpm --filter frontend dev\"",
+    "predev": "pnpm --filter @osrs-app/shared run build",
+    "build": "pnpm --recursive run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [],
+  "author": "Tanzeel Saeed",
+  "packageManager": "pnpm@10.17.1"
+}

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es6",                // modern JS output
+    "module": "esnext",             // ES modules
+    "moduleResolution": "node",     // resolve node_modules
+    "outDir": "dist",               // compiled JS goes here
+    "rootDir": "src",               // source TS files
+    "strict": true,                 // enable strict TS checks
+    "esModuleInterop": true,        // allow default imports from CommonJS
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true            // skip type checking for node_modules
+  },
+  "include": ["src/**/*"]
+}
