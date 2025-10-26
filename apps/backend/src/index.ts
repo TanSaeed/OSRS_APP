@@ -3,12 +3,15 @@ import cors from "cors";
 import { hello } from "@osrs-app/shared";
 import { sequelize } from "./db.js";
 import { initModels } from "./models/index.js";
+import { clanRouter } from "./routes/clan.routes.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 initModels();
+
+app.use("/api/clans", clanRouter);
 
 async function startServer() {
   try {
