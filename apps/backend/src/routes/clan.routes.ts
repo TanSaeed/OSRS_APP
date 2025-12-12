@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { Clan } from "../models/clan.model.js";
 import { User } from "../models/user.model.js";
-import { demoClans, type DemoClan } from "../demo/clans.js";
+import { demoClans } from "../demo/clans.js";
 
 const isDemoMode = process.env.REACT_APP_DEMO === "true";
 
@@ -28,7 +28,7 @@ clanRouter.get("/", async (_req, res) => {
 clanRouter.get("/:id", async (req, res) => {
   if (isDemoMode) {
     const clanId = Number(req.params.id);
-    const clan = demoClans.find((item: DemoClan) => item.id === clanId);
+    const clan = demoClans.find((item) => item.id === clanId);
 
     if (!clan) {
       return res.status(404).json({ message: "Clan not found" });
