@@ -106,7 +106,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(12) NOT NULL,
-  `password_hash` varchar(60) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
   `user_role` enum('member','leader','admin') NOT NULL DEFAULT 'member',
   `clan_id` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,

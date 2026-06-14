@@ -3,21 +3,14 @@ import cors from "cors";
 import { hello } from "@osrs-app/shared";
 import { sequelize } from "./db.js";
 import { initModels } from "./models/index.js";
-import { clanRouter } from "./routes/clan.routes.js";
-import { loadoutRouter } from "./routes/loadout.routes.js";
-import { lootRouter } from "./routes/loot.routes.js";
-import { userRouter } from "./routes/user.routes.js";
+import { registerRoutes } from "./routes/index.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 initModels();
-
-app.use("/api/clans", clanRouter);
-app.use("/api/loadouts", loadoutRouter);
-app.use("/api/loot", lootRouter);
-app.use("/api/users", userRouter);
+registerRoutes(app);
 
 async function startServer() {
   try {

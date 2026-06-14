@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es6",                // modern JS output
-    "module": "esnext",             // ES modules
-    "moduleResolution": "node",     // resolve node_modules
+    "target": "ES2022",             // modern JS output
+    "module": "NodeNext",           // Node ESM output
+    "moduleResolution": "NodeNext", // Node ESM module resolution
     "outDir": "dist",               // compiled JS goes here
     "rootDir": "src",               // source TS files
     "strict": true,                 // enable strict TS checks

@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { hashPassword } from "../auth/password.js";
 import { Clan } from "../models/clan.model.js";
 import { Loadout } from "../models/loadout.model.js";
 import { User } from "../models/user.model.js";
@@ -66,11 +67,15 @@ userRouter.post("/", async (req, res) => {
   }
 
   try {
-    const { username, passwordHash, userRole, clanId } = req.body;
+    const { username, password, userRole, clanId } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({ message: "Username and password are required" });
+    }
 
     const user = await User.create({
       username,
-      passwordHash,
+      passwordHash: await hashPassword(password),
       userRole: userRole ?? "member",
       clanId: clanId ?? null,
     });
@@ -98,14 +103,14 @@ userRouter.put("/:id", async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const { username, passwordHash, userRole, clanId } = req.body;
+    const { username, password, userRole, clanId } = req.body;
 
     if (username !== undefined) {
       user.username = username;
     }
 
-    if (passwordHash !== undefined) {
-      user.passwordHash = passwordHash;
+    if (password !== undefined) {
+      user.passwordHash = await hashPassword(password);
     }
 
     if (userRole !== undefined) {
