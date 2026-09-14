@@ -2,8 +2,7 @@ import { Router } from "express";
 import { Clan } from "../models/clan.model.js";
 import { User } from "../models/user.model.js";
 import { demoClans } from "../demo/clans.js";
-
-const isDemoMode = process.env.REACT_APP_DEMO === "true";
+import { isDemoMode } from "../config.js";
 
 export const clanRouter = Router();
 

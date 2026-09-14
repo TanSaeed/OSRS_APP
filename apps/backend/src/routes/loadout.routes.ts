@@ -2,8 +2,7 @@ import { Router } from "express";
 import { Loadout } from "../models/loadout.model.js";
 import { User } from "../models/user.model.js";
 import { demoLoadouts } from "../demo/loadouts.js";
-
-const isDemoMode = process.env.REACT_APP_DEMO === "true";
+import { isDemoMode } from "../config.js";
 
 export const loadoutRouter = Router();
 

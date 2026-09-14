@@ -4,8 +4,7 @@ import { Clan } from "../models/clan.model.js";
 import { Loadout } from "../models/loadout.model.js";
 import { User } from "../models/user.model.js";
 import { demoUsers } from "../demo/users.js";
-
-const isDemoMode = process.env.REACT_APP_DEMO === "true";
+import { isDemoMode } from "../config.js";
 const publicUserAttributes = ["id", "username", "userRole", "clanId", "createdAt"];
 
 export const userRouter = Router();

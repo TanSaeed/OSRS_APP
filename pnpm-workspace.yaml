@@ -2,5 +2,6 @@ packages:
   - apps/*
   - packages/*
 
-ignoredBuiltDependencies:
-  - esbuild
+allowBuilds:
+  '@tailwindcss/oxide': true
+  esbuild: true

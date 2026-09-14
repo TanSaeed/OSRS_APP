@@ -1,24 +1,14 @@
-console.log("db.ts loaded");
-
 import { Sequelize } from "sequelize";
-import dotenv from "dotenv";
-
-dotenv.config();
+import { databaseConfig } from "./config.js";
 
 export const sequelize = new Sequelize(
-  process.env.DB_NAME!,
-  process.env.DB_USER!,
-  process.env.DB_PASS!,
+  databaseConfig.database,
+  databaseConfig.username,
+  databaseConfig.password,
   {
-    host: process.env.DB_HOST,
+    host: databaseConfig.host,
+    port: databaseConfig.port,
     dialect: "mysql",
-    logging: false, // optional: hides SQL logs
+    logging: false,
   }
 );
-
-/* Test connection
-sequelize.authenticate()
-  .then(() => console.log("Database connected!"))
-  .catch(err => console.error("DB connection error:", err));
-  */
- 

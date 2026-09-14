@@ -1,6 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 import type { AuthTokenPayload } from "../auth/token.js";
 import { verifyAuthToken } from "../auth/token.js";
+import { isDemoMode } from "../config.js";
 
 export interface AuthenticatedRequest extends Request {
   auth?: AuthTokenPayload;
@@ -11,6 +12,10 @@ export const authenticate = (
   res: Response,
   next: NextFunction
 ) => {
+  if (isDemoMode) {
+    return res.status(403).json({ message: "Demo mode: authentication is disabled" });
+  }
+
   const authorization = req.headers.authorization;
   const token = authorization?.startsWith("Bearer ")
     ? authorization.slice("Bearer ".length)

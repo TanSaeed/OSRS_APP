@@ -3,8 +3,7 @@ import { Clan } from "../models/clan.model.js";
 import { Loot } from "../models/loot.model.js";
 import { User } from "../models/user.model.js";
 import { demoLoot } from "../demo/loot.js";
-
-const isDemoMode = process.env.REACT_APP_DEMO === "true";
+import { isDemoMode } from "../config.js";
 
 export const lootRouter = Router();
 

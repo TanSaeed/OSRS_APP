@@ -3,8 +3,8 @@ import { createAuthToken } from "../auth/token.js";
 import { hashPassword, verifyPassword } from "../auth/password.js";
 import { authenticate, type AuthenticatedRequest } from "../middleware/auth.middleware.js";
 import { User } from "../models/user.model.js";
+import { isDemoMode } from "../config.js";
 
-const isDemoMode = process.env.REACT_APP_DEMO === "true";
 const publicUserAttributes = ["id", "username", "userRole", "clanId", "createdAt"];
 
 export const authRouter = Router();
@@ -47,6 +47,10 @@ authRouter.post("/register", async (req, res) => {
 });
 
 authRouter.post("/login", async (req, res) => {
+  if (isDemoMode) {
+    return res.status(403).json({ message: "Demo mode: authentication is disabled" });
+  }
+
   try {
     const { username, password } = req.body;
 
@@ -84,6 +88,10 @@ authRouter.post("/login", async (req, res) => {
 });
 
 authRouter.get("/me", authenticate, async (req: AuthenticatedRequest, res) => {
+  if (isDemoMode) {
+    return res.status(403).json({ message: "Demo mode: authentication is disabled" });
+  }
+
   try {
     const user = await User.findByPk(req.auth?.id, {
       attributes: publicUserAttributes,
